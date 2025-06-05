@@ -109,7 +109,6 @@
             <li><a href="#influence" data-i18n="nav_influence">文化影响与活动</a></li>
             <li><a href="#resources" data-i18n="nav_resources">相关非遗</a></li>
             <li><a href="#contact" data-i18n="nav_contact">联系我们</a></li>
-         <li><a href="#ai-features" data-i18n="nav_ai_features">AI 智能体验</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -589,72 +588,6 @@
       </div>
     </section>
 
-  </main>
-<section id="ai-features" class="ai-features section">
-  <div class="container">
-
-    <div class="section-title" data-aos="fade-up">
-      <h2 data-i18n="ai_section_title">AI 智能体验</h2>
-      <p data-i18n="ai_section_description">通过AI技术，探索《红楼梦》的更多可能性，提供智能翻译与互动问答。</p>
-    </div>
-
-    <div class="row gy-4">
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="ai-card">
-          <h3 data-i18n="ai_translate_title"><i class="bi bi-translate"></i> AI 文本翻译</h3>
-          <p data-i18n="ai_translate_description">在此处输入文本，选择输入语言和翻译目标语言，体验AI智能翻译功能。</p>
-
-          <div class="form-group mt-3">
-            <label for="ai-translate-input-lang" data-i18n="ai_translate_input_label">输入语言：</label>
-            <select id="ai-translate-input-lang" class="form-select">
-              <option value="auto" selected data-i18n="ai_input_lang_auto">自动检测 (Auto-detect)</option>
-              <option value="zh" data-i18n="ai_input_lang_zh">中文 (Chinese)</option>
-              <option value="en" data-i18n="ai_input_lang_en">英文 (English)</option>
-              </select>
-          </div>
-
-          <div class="form-group mt-3"> <textarea id="ai-translate-input" class="form-control" rows="5" placeholder="例如：林黛玉葬花的故事表达了她怎样的情感？" data-i18n-placeholder="ai_translate_placeholder"></textarea>
-          </div>
-
-          <div class="form-group mt-3">
-            <label for="ai-translate-target-lang" data-i18n="ai_translate_target_label">翻译为：</label>
-            <select id="ai-translate-target-lang" class="form-select">
-              <option value="en" selected data-i18n="ai_lang_en">英文 (English)</option>
-              <option value="ja" data-i18n="ai_lang_ja">日文 (Japanese)</option>
-              <option value="ko" data-i18n="ai_lang_ko">韩文 (Korean)</option>
-              <option value="fr" data-i18n="ai_lang_fr">法文 (French)</option>
-              <option value="de" data-i18n="ai_lang_de">德文 (German)</option>
-            </select>
-          </div>
-
-          <div class="mt-3 text-center">
-            <button id="ai-translate-btn" class="btn btn-primary" data-i18n="ai_translate_button_generic">开始翻译</button>
-          </div>
-          <div class="mt-3">
-            <h4 data-i18n="ai_translate_result_label">翻译结果：</h4>
-            <p id="ai-translated-output" class="translated-text" data-i18n="ai_translate_output_initial">此处显示翻译结果。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="ai-card">
-          <h3 data-i18n="ai_chat_title"><i class="bi bi-chat-dots"></i> 红楼梦智能问答</h3>
-          <p data-i18n="ai_chat_description">向AI提问任何关于《红楼梦》的问题，它将为你提供智能回复。例如：“贾宝玉的性格特点是什么？”</p>
-          <div id="chat-messages" class="chat-messages">
-            <div class="chat-message ai"><strong data-i18n="ai_chat_prefix">AI:</strong> <span data-i18n="ai_chat_welcome_message">你好！我是《红楼梦》的智能助手，有什么可以帮助你的吗？</span></div>
-          </div>
-          <div class="form-group d-flex mt-3">
-            <input type="text" id="chat-input" class="form-control me-2" placeholder="输入你的问题..." data-i18n-placeholder="ai_chat_placeholder">
-            <button id="send-chat-btn" class="btn btn-primary" data-i18n="ai_chat_send_button"><i class="bi bi-send"></i> 发送</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
 </section><footer id="footer" class="footer">
   <div class="container copyright text-center">
     <p>© <span data-i18n="footer_copyright_prefix">Copyright</span> <strong class="px-1 sitename" data-i18n="footer_site_name">红楼梦</strong> <span data-i18n="footer_copyright_suffix">All Rights Reserved</span></p>
