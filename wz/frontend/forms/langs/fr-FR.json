@@ -1,0 +1,9 @@
+{
+  "contact": {
+    "title": "Nous Contacter",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Envoyer"
+  }
+}

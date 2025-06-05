@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title data-i18n="website_title">《红楼梦》官方宣传网站 - 探索中国古典文学瑰宝</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <script>
+    // 定义可用语言列表
+    const languages = [
+      { code: 'zh-CN', name: '中文' },
+      { code: 'en-US', name: 'English' }
+    ];
+
+    // 语言切换函数
+    function setLanguage(langCode) {
+      document.documentElement.lang = langCode;
+
+      // 确保从正确的路径加载语言文件
+      fetch(`forms/langs/${langCode}.json`)
+        .then(response => {
+          // 如果语言文件不存在，尝试加载默认语言 (zh-CN)
+          if (!response.ok) {
+            console.warn(`Language file forms/langs/${langCode}.json not found. Loading default (zh-CN).`);
+            return fetch(`forms/langs/zh-CN.json`).then(res => res.json());
+          }
+          return response.json();
+        })
+        .then(translations => {
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const keys = key.split('.'); // 支持嵌套键，如 "contact.title"
+            let translatedText = translations;
+            for (const k of keys) {
+                if (translatedText && typeof translatedText === 'object' && translatedText[k] !== undefined) {
+                    translatedText = translatedText[k];
+                } else {
+                    translatedText = undefined; // 找不到翻译
+                    break;
+                }
+            }
+            element.textContent = translatedText !== undefined ? translatedText : key; // 如果找不到翻译，显示原始键
+          });
+
+          // 更新语言切换器中的 active 状态
+          document.querySelectorAll('.language-switcher a').forEach(link => {
+            if (link.onclick.toString().includes(`setLanguage('${langCode}')`)) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        })
+        .catch(error => console.error('Error loading language file:', error));
+    }
+
+    // 在语言切换时保存用户偏好
+    function saveLanguagePreference(langCode) {
+      localStorage.setItem('userLang', langCode);
+    }
+
+    // 在页面加载时设置默认语言
+    document.addEventListener('DOMContentLoaded', () => {
+      const userLang = localStorage.getItem('userLang') || navigator.language || 'zh-CN';
+      const initialLang = languages.some(lang => lang.code === userLang) ? userLang : 'zh-CN';
+      setLanguage(initialLang);
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <h1 class="sitename" data-i18n="website_title_short">红楼梦</h1>
+      </a>
+
+      <div class="header-right-content d-flex align-items-center">
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="#hero" class="active" data-i18n="nav_home">首页</a></li>
+            <li><a href="#about" data-i18n="nav_about">关于红楼梦</a></li>
+            <li><a href="#characters" data-i18n="nav_characters">主要人物</a></li>
+            <li><a href="#chapters" data-i18n="nav_chapters">章节概要</a></li>
+            <li><a href="#adaptations" data-i18n="nav_adaptations">影视改编</a></li>
+            <li><a href="#influence" data-i18n="nav_influence">文化影响与活动</a></li>
+            <li><a href="#resources" data-i18n="nav_resources">相关非遗</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">联系我们</a></li>
+         <li><a href="#ai-features" data-i18n="nav_ai_features">AI 智能体验</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <div class="language-switcher ms-3">
+          <a href="#" onclick="setLanguage('zh-CN'); saveLanguagePreference('zh-CN'); return false;">中文</a>
+          <a href="#" onclick="setLanguage('en-US'); saveLanguagePreference('en-US'); return false;">English</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main">j
+
+    <section id="hero" class="hero section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <h2 data-i18n="hero_title">《红楼梦》：一部中国古典文学的巅峰之作</h2>
+            <p data-i18n="hero_description">深入探索曹雪芹的传世巨著，感受贾宝玉、林黛玉和薛宝钗的悲欢离合，领略中华文化的博大精深。</p>
+            <div class="d-flex">
+              <a href="#about" class="btn-get-started scrollto" data-i18n="hero_learn_more">了解更多</a>
+              <a href="https://www.bilibili.com/video/BV1rB4y1K7Vi/?vd_source=ca143d291d89ca4e0f74c978581d8aa6" class="glightbox btn-watch-video d-flex align-items-center" data-i18n="hero_watch_video"><i class="bi bi-play-circle"></i><span>观看简介视频</span></a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
+            <img src="assets/img/hero-book-img.png" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="about_title">关于《红楼梦》</h2>
+        <p data-i18n="about_subtitle">中国文学史上的不朽丰碑</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 data-i18n="about_author_title">作者与背景</h3>
+            <p data-i18n="about_author_description">《红楼梦》，又名《石头记》，是中国清代作家曹雪芹所著。它以贾、史、王、薛四大家族的兴衰为背景，描绘了封建社会末期的世态炎凉和贵族生活的腐朽。</p>
+           <div class="about-image-wrapper">
+    <img src="assets/img/about-author-portrait.jpg" class="img-fluid fancy-hover-scale" alt="曹雪芹画像">
+    <p class="image-caption" data-i18n="about_author_portrait_caption">曹雪芹画像</p>
+</div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 data-i18n="about_themes_title">主题与艺术特色</h3>
+            <p data-i18n="about_themes_description">小说深刻揭示了封建社会由盛及衰的历史趋势，批判了其弊端。其语言精炼、人物形象丰满、情节错综复杂，具有极高的文学艺术价值。</p>
+            <div class="about-image-wrapper">
+              <img src="assets/img/about-grand-view-garden.jpg" class="img-fluid fancy-hover-rotate" alt="大观园场景">
+              <p class="image-caption" data-i18n="about_grand_view_garden_caption">大观园景致</p>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <h3 data-i18n="about_legacy_title">深远影响</h3>
+            <p data-i18n="about_legacy_description">《红楼梦》不仅在中国文学史上占据重要地位，在世界文学史上也享有盛誉，被誉为“中国文学的百科全书”。</p>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <h3 data-i18n="about_versions_title">版本流传</h3>
+            <p data-i18n="about_versions_description">《红楼梦》版本众多，其中以脂砚斋评点本和程甲本、程乙本最为著名，各具特色，为红学研究提供了丰富的资料。</p>
+          </div>
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="500">
+            <h3 data-i18n="about_cultural_value_title">文化价值</h3>
+            <p data-i18n="about_cultural_value_description">《红楼梦》是中国传统文化的集大成者，涵盖了诗词、戏曲、绘画、园林、服饰、饮食等诸多方面，是研究中国传统社会和文化的宝贵资料。</p>
+            <div class="about-image-wrapper large-image">
+              <img src="assets/img/about-cultural-elements.jpg" class="img-fluid fancy-border-glow" alt="红楼梦文化元素">
+              <p class="image-caption" data-i18n="about_cultural_elements_caption">小说中的琴棋书画、诗酒花茶</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="characters" class="characters section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="characters_title">主要人物</h2>
+        <p data-i18n="characters_subtitle">红楼梦中那些鲜活的灵魂</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="character-card">
+              <img src="assets/img/character-baoyu.jpg" class="img-fluid fancy-image-outline" alt="贾宝玉">
+              <h3 data-i18n="character_baoyu_title">贾宝玉</h3>
+              <p data-i18n="character_baoyu_description">贾宝玉，荣国府衔玉而生的公子，是故事的中心人物。他聪明灵秀，却不热衷功名利禄，对封建礼教格格不入。他与林黛玉之间有着深厚的爱情，却最终未能如愿。他多情、叛逆、富有人道主义精神，是封建叛逆者的典型。</p>
+              <a href="https://tv.cctv.com/2010/04/13/VIDE1355516783350947.shtml" class="learn-more-btn" data-i18n="characters_learn_more">了解更多</a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="character-card">
+              <img src="assets/img/character-daiyu.jpg" class="img-fluid fancy-image-outline" alt="林黛玉">
+              <h3 data-i18n="character_daiyu_title">林黛玉</h3>
+              <p data-i18n="character_daiyu_description">林黛玉，绛珠仙草转世，寄居贾府。她才华横溢，诗思敏捷，与贾宝玉是灵魂的知己。然而，她生性敏感多疑，体弱多病，最终在宝玉娶宝钗后郁郁而终，代表了旧时代女性的悲剧命运。</p>
+              <a href="https://www.bilibili.com/video/BV1kg4y1q7JN/?spm_id_from=333.337.search-card.all.click&vd_source=ca143d291d89ca4e0f74c978581d8aa6" class="learn-more-btn" data-i18n="characters_learn_more">了解更多</a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="character-card">
+              <img src="assets/img/character-baochai.jpg" class="img-fluid fancy-image-outline" alt="薛宝钗">
+              <h3 data-i18n="character_baochai_title">薛宝钗</h3>
+              <p data-i18n="character_baochai_description">薛宝钗，金陵十二钗之首，薛姨妈的女儿。她端庄大方，温柔敦厚，城府深沉，识大体，八面玲珑。她与贾宝玉的“金玉良缘”是家族意志的体现，最终虽嫁给宝玉，但二人并无真情，反映了封建婚姻的悲哀。</p>
+              <a href="https://www.bilibili.com/video/BV1AM4y1b7mX/?spm_id_from=333.337.search-card.all.click&vd_source=ca143d291d89ca4e0f74c978581d8aa6" class="learn-more-btn" data-i18n="characters_learn_more">了解更多</a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="character-card">
+              <img src="assets/img/character-wangxifeng.jpg" class="img-fluid fancy-image-outline" alt="王熙凤">
+              <h3 data-i18n="character_wangxifeng_name">王熙凤</h3>
+              <p data-i18n="character_wangxifeng_desc">贾府管家，精明强干，泼辣狠毒。</p>
+              <a href="https://www.bilibili.com/video/BV1bp4y1K7sU/?spm_id_from=333.337.search-card.all.click" class="learn-more-btn" data-i18n="characters_learn_more">了解更多</a>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="character-card">
+              <img src="assets/img/character-jiamu.jpg" class="img-fluid fancy-image-outline" alt="贾母">
+              <h3 data-i18n="character_jia_mother_name">贾母</h3>
+              <p data-i18n="character_jia_mother_desc">贾府最高长者，疼爱宝玉、黛玉，但心系家族。</p>
+              <a href="https://zhuanlan.zhihu.com/p/70680577" class="learn-more-btn" data-i18n="characters_learn_more">了解更多</a>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="character-card">
+              <img src="assets/img/character-qingwen.jpg" class="img-fluid fancy-image-outline" alt="晴雯">
+              <h3 data-i18n="character_qingwen_name">晴雯</h3>
+              <p data-i18n="character_qingwen_desc">宝玉大丫鬟，心比天高，命比纸薄。</p>
+              <a href="https://www.bilibili.com/video/BV1fx4y1c7aT?spm_id_from=333.788.videopod.sections&vd_source=ca143d291d89ca4e0f74c978581d8aa6" class="learn-more-btn" data-i18n="characters_learn_more">了解更多</a>
+              </div>
+          </div>
+           <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="700">
+            <div class="additional-characters-gallery">
+              <img src="assets/img/character-xi-chun.jpg" class="img-fluid fancy-grayscale-hover" alt="惜春">
+              <img src="assets/img/character-yuan-chun.jpg" class="img-fluid fancy-grayscale-hover" alt="元春">
+              <img src="assets/img/character-tan-chun.jpg" class="img-fluid fancy-grayscale-hover" alt="探春">
+              <img src="assets/img/character-shi-xiangyun.jpg" class="img-fluid fancy-grayscale-hover" alt="史湘云">
+              <img src="assets/img/character-miao-yu.jpg" class="img-fluid fancy-grayscale-hover" alt="妙玉">
+              <img src="assets/img/character-ying-chun.jpg" class="img-fluid fancy-grayscale-hover" alt="迎春">
+              <img src="assets/img/character-qiao-jie.jpg" class="img-fluid fancy-grayscale-hover" alt="巧姐">
+              <img src="assets/img/character-li-wan.jpg" class="img-fluid fancy-grayscale-hover" alt="李纨">
+              <img src="assets/img/character-qin-keqing.jpg" class="img-fluid fancy-grayscale-hover" alt="秦可卿">
+            </div>
+           
+             <a href="https://www.bilibili.com/video/BV1WF411D7TV/?spm_id_from=333.337.search-card.all.click" class="mt-3" data-i18n="characters_more_intro">更多金陵十二钗及次要人物...</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chapters" class="chapters section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="chapters_title">章节概要</h2>
+        <p data-i18n="chapters_subtitle">红楼梦的篇章结构</p>
+      </div>
+
+      <div class="container">
+        <p class="section-description" data-aos="fade-up" data-aos-delay="100" data-i18n="chapters_intro">《红楼梦》以其精妙的章回结构，将贾宝玉、林黛玉、薛宝钗等人物的命运和贾府的兴衰娓娓道来。</p>
+
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="chapter-summary-card">
+              <h3 data-i18n="chapter_opening_title">开篇与引子</h3>
+              <p data-i18n="chapter_opening_description">女娲补天，顽石下凡，太虚幻境，警幻仙姑。</p>
+              <div class="chapter-card-image-overlay">
+                <img src="assets/img/chapter-opening-scene.jpg" class="img-fluid fancy-image-fade" alt="开篇场景">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="chapter-summary-card">
+              <h3 data-i18n="chapter_early_life_title">贵族生活与情感萌芽</h3>
+              <p data-i18n="chapter_early_life_description">贾府盛极一时，宝玉与黛玉、宝钗等共居大观园，情投意合。</p>
+              <div class="chapter-card-image-overlay">
+                <img src="assets/img/chapter-grand-view-garden-daily.jpg" class="img-fluid fancy-image-fade" alt="大观园生活">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="chapter-summary-card">
+              <h3 data-i18n="chapter_turning_point_title">家族转折与矛盾加剧</h3>
+              <p data-i18n="chapter_turning_point_description">元妃省亲后，贾府逐渐衰落，内部矛盾激化，金玉良缘之说渐起。</p>
+              <div class="chapter-card-image-overlay">
+                <img src="assets/img/chapter-yuanfei-visit.jpg" class="img-fluid fancy-image-fade" alt="元妃省亲">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="chapter-summary-card">
+              <h3 data-i18n="chapter_tragedy_title">悲剧宿命与大厦将倾</h3>
+              <p data-i18n="chapter_tragedy_description">抄检大观园，黛玉病逝，宝玉出家，贾府彻底败落。</p>
+              <div class="chapter-card-image-overlay">
+                <img src="assets/img/chapter-end-tragedy.jpg" class="img-fluid fancy-image-fade" alt="抄检大观园">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-list mt-5">
+          <h3 href="https://ctext.org/hongloumeng/zhs" class="text-center mb-4" data-i18n="chapters_read_more">阅读完整章节列表</h3>   
+
+      <div class="row gy-3">
+  <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+    <div class="chapter-summary-card">
+      <h4 data-i18n="chapter_item1_title">第一回：甄士隐梦幻识通灵 贾雨村风尘怀闺秀</h4>
+      <p data-i18n="chapter_item1_description">讲述了甄士隐与贾雨村的故事，引出青埂峰下无才补天的顽石和茫茫大士、渺渺真人，为全书做了铺垫。</p>
+      <div class="chapter-card-image-overlay">
+        <img src="assets/img/chapter-1-scene.jpg" class="img-fluid fancy-image-fade" alt="甄士隐梦幻识通灵">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+    <div class="chapter-summary-card">
+      <h4 data-i18n="chapter_item2_title">第三回：金陵城起复贾雨村 荣国府收养林黛玉</h4>
+      <p data-i18n="chapter_item2_description">林黛玉进贾府，初次见到贾宝玉，二人“似曾相识”，奠定了后续情感发展的基础。</p>
+      <div class="chapter-card-image-overlay">
+        <img src="assets/img/chapter-3-scene.jpg" class="img-fluid fancy-image-fade" alt="林黛玉进贾府">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+   <div class="chapter-summary-card">
+      <h4 data-i18n="chapter_item3_title">第五回：贾宝玉神游太虚境 警幻仙曲演红楼梦</h4>
+      <p data-i18n="chapter_item3_description">宝玉梦游太虚幻境，警幻仙姑展示“金陵十二钗”判词和《红楼梦》曲子，预示了书中人物的命运。</p>
+      <div class="chapter-card-image-overlay">
+        <img src="assets/img/chapter-5-scene.jpg" class="img-fluid fancy-image-fade" alt="贾宝玉神游太虚境">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+   <div class="chapter-summary-card">
+      <h4 data-i18n="chapter_item4_title">第二十三回：西厢记妙词通戏语 牡丹亭艳曲警芳心</h4>
+      <p data-i18n="chapter_item4_description">宝玉与黛玉在大观园共读《西厢记》和《牡丹亭》，通过戏剧内容进一步表达了两人之间心有灵犀的爱慕与共鸣。</p>
+      <div class="chapter-card-image-overlay">
+        <img src="assets/img/chapter-23-scene.jpg" class="img-fluid fancy-image-fade" alt="西厢记妙词通戏语">
+      </div>
+    </div>
+  </div>
+</div>
+    </section>
+
+    <section id="call-to-action" class="call-to-action section">
+      <img src="assets/img/call-to-action-bg.jpg" alt="">
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              <h3 data-i18n="cta_banner_title">探寻红楼深意，品味文学之美</h3>
+              <p data-i18n="cta_banner_description">每一回目，每一诗词，都蕴含着时代的印记与人性的光辉。</p>
+              <a class="cta-btn" href="https://zh.wikipedia.org/wiki/%E7%BA%A2%E6%A5%BC%E6%A2%A6" data-i18n="cta_banner_button">深入阅读百科</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="adaptations" class="adaptations section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="adaptations_title">影视与改编</h2>
+        <p data-i18n="adaptations_subtitle">红楼梦的多元艺术呈现</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+            <h3 data-i18n="adaptations_film_title">经典影视作品</h3>
+            <p data-i18n="adaptations_film_description">自《红楼梦》问世以来，被改编成各种艺术形式，其中尤以影视剧最为普及。1987版电视剧被誉为无法超越的经典，其服化道、演员表演、音乐等都达到了极高水准。</p>
+            <div class="adaptations-gallery">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="assets/img/adaptations-87-drama-still-1.jpg" class="img-fluid fancy-shadow-hover" alt="87版红楼梦剧照1">
+                <div class="overlay-text">87版剧照：电视剧封面</div>
+              </div>
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                <img src="assets/img/adaptations-87-drama-still-2.jpg" class="img-fluid fancy-shadow-hover" alt="87版红楼梦剧照2">
+                <div class="overlay-text">87版剧照：宝黛读西厢</div>
+              </div>
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                <img src="assets/img/adaptations-yuxuan-opera.jpg" class="img-fluid fancy-shadow-hover" alt="越剧红楼梦">
+                <div class="overlay-text">越剧《红楼梦》</div>
+              </div>
+            </div>
+            <ul>
+              <li data-i18n="adaptations_film_item1">87版电视剧《红楼梦》</li>
+              <li data-i18n="adaptations_film_item2">电影《红楼梦》（如李翰祥导演版）</li>
+              <li data-i18n="adaptations_film_item3">越剧、昆曲等戏曲版本</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="influence" class="influence section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="influence_title">文化影响与传承</h2>
+        <p data-i18n="influence_subtitle">一部书，影响一个民族</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+            <h3 data-i18n="influence_impact_title">对中国文化的深远影响</h3>
+            <p data-i18n="influence_impact_description">《红楼梦》对中国文学、语言、艺术、哲学等产生了极其深远的影响。它不仅是文学作品，更成为了中华文化的瑰宝，是理解中国传统社会和文化的重要窗口。</p>
+          </div>
+          <div class="col-lg-12">
+            <div class="accordion accordion-flush" id="influenceAccordion">
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" data-i18n="influence_accordion_title1">
+                    红学研究的兴起
+                  </button>
+                </h3>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#influenceAccordion">
+                  <div class="accordion-body" data-i18n="influence_accordion_desc1">
+                    《红楼梦》诞生后，便引发了对其作者、版本、思想、艺术等方面的深入研究，形成了一门专门的学问——“红学”，在国内外学术界都占有重要地位。
+                    <div class="accordion-image-wrapper">
+                      <img src="assets/img/influence-redology-research.jpg" class="img-fluid fancy-grayscale-to-color" alt="红学研究资料">
+                      <p class="image-caption">红学研究资料</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" data-i18n="influence_accordion_title2">
+                    语言艺术的典范
+                  </button>
+                </h3>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#influenceAccordion">
+                  <div class="accordion-body" data-i18n="influence_accordion_desc2">
+                    小说语言生动传神，雅俗共赏，极大地丰富了汉语的表现力，成为后世白话文创作的典范。
+                    <div class="accordion-image-wrapper">
+                      <img src="assets/img/influence-calligraphy-poem.jpg" class="img-fluid fancy-skew-on-hover" alt="红楼梦诗词书法">
+                      <p class="image-caption">红楼梦诗词书法</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" data-i18n="influence_accordion_title3">
+                    全球传播与翻译
+                  </button>
+                </h3>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#influenceAccordion">
+                  <div class="accordion-body" data-i18n="influence_accordion_desc3">
+                    《红楼梦》被翻译成多种语言，在世界范围内传播，让更多人了解和欣赏到这部东方巨著的魅力。
+                    <div class="accordion-image-wrapper">
+                      <img src="assets/img/influence-global-translations.jpg" class="img-fluid fancy-spin-on-hover" alt="多语言版本红楼梦">
+                      <p class="image-caption">多语言版本</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour" data-i18n="influence_accordion_title4">
+                    丰富多彩的文化活动
+                  </button>
+                </h3>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#influenceAccordion">
+                  <div class="accordion-body" data-i18n="influence_accordion_desc4">
+                    近年来，围绕《红楼梦》的文化活动层出不穷，包括主题展览、学术讲座、沉浸式体验、戏曲表演、文创市集等，展现了红楼文化的持久魅力和当代活力。
+                    <div class="accordion-image-wrapper">
+                      <img src="assets/img/influence-cultural-event.jpg" class="img-fluid fancy-pop-on-hover" alt="红楼梦文化活动">
+                      <p class="image-caption">红楼梦主题文化活动</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="resources section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="resources_title">相关非遗活动</h2>
+        <p data-i18n="resources_subtitle">深入了解红楼梦的更多途径</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="resource-item">
+              <div class="resource-icon-wrapper">
+                <img src="assets/img/resource-artwork-icon.png" class="resource-icon fancy-pulse" alt="艺术衍生品图标">
+              </div>
+              <h3 data-i18n="resource_item1_title">​雕漆</h3>
+              <p data-i18n="resource_item1_description">在《红楼梦》第四十一回，妙玉捧出的“海棠花式雕漆填金云龙献寿小茶盘”，其制作技艺“雕漆”是一门显赫的宫廷艺术，与宫毯、花丝镶嵌、金漆镶嵌、景泰蓝、牙雕、玉雕、京绣并称为“燕京八绝”。</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="resource-item">
+              <div class="resource-icon-wrapper">
+                <img src="assets/img/resource-library-icon.png" class="resource-icon fancy-pulse" alt="图书馆图标">
+              </div>
+              <h3 data-i18n="resource_item2_title">​花丝镶嵌​</h3>
+              <p data-i18n="resource_item2_description">《红楼梦》中，贾府小姐贾迎春有一支“攒珠累金凤”，运用了花丝镶嵌技艺。</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="resource-item">
+              <div class="resource-icon-wrapper">
+                <img src="assets/img/resource-museum-icon.png" class="resource-icon fancy-pulse" alt="博物馆图标">
+              </div>
+              <h3 data-i18n="resource_item3_title">刺绣</h3>
+              <p data-i18n="resource_item3_description">书中的刺绣工艺，无论是苏绣、粤绣还是湘绣，都展现了极高的技艺水平和艺术价值。</p>
+            </div>
+          </div>
+          <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="400">
+            <a href="https://www.sohu.com/a/495837496_121123842#:~:text=%E5%9C%A8%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E7%BA%A2%E6%A5%BC%E6%A2%A6%E3%80%8B%E9%87%8C%EF%BC%8C%E7%8E%B0%E4%BB%A3%E4%BA%BA%E8%BE%83%E5%B0%91%E5%90%AC%E8%AF%B4%E7%9A%84%E2%80%9C%E5%86%B7%E5%87%9D%E5%90%88%E9%A6%99%E2%80%9D%E5%8D%A0%E4%BA%86%E6%95%B0%E4%B8%AA%E9%95%9C%E5%A4%B4%EF%BC%9A%E7%9A%87%E5%B8%9D%E5%89%8D%E6%97%A5%E6%89%8D%E4%BA%B2%E8%B5%90%E5%8C%97%E9%9D%99%E7%8E%8B%E7%9A%84%E4%B8%80%E4%B8%B2%E9%B9%A1%E9%B8%B0%E9%A6%99%E5%BF%B5%E7%8F%A0%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%8C%97%E9%9D%99%E7%8E%8B%E5%AF%B9%E5%AE%9D%E7%8E%89%E7%9A%84%E8%B5%8F%E8%AF%86%EF%BC%8C%E8%BD%AC%E6%89%8B%E8%A2%AB%E9%80%81%E7%BB%99%E4%BA%86%E5%AE%9D%E7%8E%89%E3%80%82%20%E8%BF%99%E6%88%96%E8%AE%B8%E6%98%AF%E4%B8%AD%E5%9B%BD%E4%BC%A0%E7%BB%9F%E7%94%A8%E9%A6%99%E4%B8%AD%E7%9A%84%E2%80%9C%E5%86%B7%E5%87%9D%E5%90%88%E9%A6%99%E2%80%9D%EF%BC%8C%E5%9C%A8%E7%94%B5%E8%A7%86%E4%BD%9C%E5%93%81%E4%B8%AD%E6%9C%80%E9%83%91%E9%87%8D%E5%85%B6%E4%BA%8B%E7%9A%84%E4%B8%80%E6%AC%A1%E5%87%BA%E5%9C%BA%E3%80%82,%E5%9C%A8%E7%8E%8B%E5%85%AC%E8%B4%B5%E6%97%8F%E6%89%8B%E4%B8%AD%E6%B5%81%E8%BD%AC%EF%BC%8C%E5%B9%B6%E8%A2%AB%E8%A7%86%E8%8B%A5%E7%8F%8D%E5%AE%9D%E7%9A%84%E2%80%9C%E9%A6%99%E7%8F%A0%E2%80%9D%E7%A9%B6%E7%AB%9F%E4%BB%8E%E4%BD%95%E8%80%8C%E6%9D%A5%EF%BC%9F%20%E8%AE%B0%E8%80%85%E9%87%87%E8%AE%BF%E4%BA%86%E7%A6%8F%E5%B7%9E%E7%9A%84%E5%8F%A4%E6%B3%95%E5%86%B7%E5%87%9D%E5%90%88%E9%A6%99%E5%88%B6%E4%BD%9C%E6%8A%80%E8%89%BA%E4%BC%A0%E6%89%BF%E4%BA%BA%E9%99%88%E5%8D%AB%E5%B9%B3%EF%BC%8C%E5%AF%BB%E8%AE%BF%E8%BF%99%E9%A1%B9%E9%A2%87%E4%B8%BA%E5%86%B7%E9%97%A8%E7%9A%84%E4%BC%A0%E7%BB%9F%E6%8A%80%E8%89%BA%E3%80%82%20%EF%BC%88%E9%99%88%E5%8D%AB%E5%B9%B3%E5%88%B6%E4%BD%9C%E7%9A%84%E5%90%84%E7%A7%8D%E5%86%B7%E5%87%9D%E5%90%88%E9%A6%99%E6%96%87%E5%88%9B%E4%BA%A7%E5%93%81%E3%80%82" class="btn-more-resources" data-i18n="resource_read_more">查看更多</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 data-i18n="contact.title">联系我们</h2>
+        <p data-i18n="contact.subtitle">如果您对《红楼梦》有任何疑问或希望分享您的见解，欢迎与我们联系。</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <div class="info-item d-flex align-items-center">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3 data-i18n="contact.address_title">地址</h3>
+                <p data-i18n="contact.address_value">中国某文化机构 或 虚拟地址</p>
+              </div>
+            </div>
+            <div class="info-item d-flex align-items-center">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3 data-i18n="contact.phone_title">电话</h3>
+                <p data-i18n="contact.phone_value">+86 1234 567890</p>
+              </div>
+            </div>
+            <div class="info-item d-flex align-items-center">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3 data-i18n="contact.email_title">邮箱</h3>
+                <p data-i18n="contact.email_value">info@redchamber.org</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" data-i18n="contact.name_placeholder" placeholder="您的姓名" required>
+                </div>
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" data-i18n="contact.email_placeholder" placeholder="您的邮箱" required>
+                </div>
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" data-i18n="contact.subject_placeholder" placeholder="主题" required>
+                </div>
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" data-i18n="contact.message_placeholder" placeholder="消息内容" required></textarea>
+                </div>
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button type="submit" data-i18n="contact.submit_button">发送消息</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+<section id="ai-features" class="ai-features section">
+  <div class="container">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2 data-i18n="ai_section_title">AI 智能体验</h2>
+      <p data-i18n="ai_section_description">通过AI技术，探索《红楼梦》的更多可能性，提供智能翻译与互动问答。</p>
+    </div>
+
+    <div class="row gy-4">
+
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="ai-card">
+          <h3 data-i18n="ai_translate_title"><i class="bi bi-translate"></i> AI 文本翻译</h3>
+          <p data-i18n="ai_translate_description">在此处输入文本，选择输入语言和翻译目标语言，体验AI智能翻译功能。</p>
+
+          <div class="form-group mt-3">
+            <label for="ai-translate-input-lang" data-i18n="ai_translate_input_label">输入语言：</label>
+            <select id="ai-translate-input-lang" class="form-select">
+              <option value="auto" selected data-i18n="ai_input_lang_auto">自动检测 (Auto-detect)</option>
+              <option value="zh" data-i18n="ai_input_lang_zh">中文 (Chinese)</option>
+              <option value="en" data-i18n="ai_input_lang_en">英文 (English)</option>
+              </select>
+          </div>
+
+          <div class="form-group mt-3"> <textarea id="ai-translate-input" class="form-control" rows="5" placeholder="例如：林黛玉葬花的故事表达了她怎样的情感？" data-i18n-placeholder="ai_translate_placeholder"></textarea>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="ai-translate-target-lang" data-i18n="ai_translate_target_label">翻译为：</label>
+            <select id="ai-translate-target-lang" class="form-select">
+              <option value="en" selected data-i18n="ai_lang_en">英文 (English)</option>
+              <option value="ja" data-i18n="ai_lang_ja">日文 (Japanese)</option>
+              <option value="ko" data-i18n="ai_lang_ko">韩文 (Korean)</option>
+              <option value="fr" data-i18n="ai_lang_fr">法文 (French)</option>
+              <option value="de" data-i18n="ai_lang_de">德文 (German)</option>
+            </select>
+          </div>
+
+          <div class="mt-3 text-center">
+            <button id="ai-translate-btn" class="btn btn-primary" data-i18n="ai_translate_button_generic">开始翻译</button>
+          </div>
+          <div class="mt-3">
+            <h4 data-i18n="ai_translate_result_label">翻译结果：</h4>
+            <p id="ai-translated-output" class="translated-text" data-i18n="ai_translate_output_initial">此处显示翻译结果。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="ai-card">
+          <h3 data-i18n="ai_chat_title"><i class="bi bi-chat-dots"></i> 红楼梦智能问答</h3>
+          <p data-i18n="ai_chat_description">向AI提问任何关于《红楼梦》的问题，它将为你提供智能回复。例如：“贾宝玉的性格特点是什么？”</p>
+          <div id="chat-messages" class="chat-messages">
+            <div class="chat-message ai"><strong data-i18n="ai_chat_prefix">AI:</strong> <span data-i18n="ai_chat_welcome_message">你好！我是《红楼梦》的智能助手，有什么可以帮助你的吗？</span></div>
+          </div>
+          <div class="form-group d-flex mt-3">
+            <input type="text" id="chat-input" class="form-control me-2" placeholder="输入你的问题..." data-i18n-placeholder="ai_chat_placeholder">
+            <button id="send-chat-btn" class="btn btn-primary" data-i18n="ai_chat_send_button"><i class="bi bi-send"></i> 发送</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><footer id="footer" class="footer">
+  <div class="container copyright text-center">
+    <p>© <span data-i18n="footer_copyright_prefix">Copyright</span> <strong class="px-1 sitename" data-i18n="footer_site_name">红楼梦</strong> <span data-i18n="footer_copyright_suffix">All Rights Reserved</span></p>
+    <div class="credits">
+      Designed by <a href="#" data-i18n="footer_designed_by">fanxias</a>
+    </div>
+  </div>
+</footer>
+
+<a href="#hero" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/js/i18n.js"></script> 
+
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
